@@ -12,8 +12,12 @@ namespace TeamsMaker_METIER.Algorithmes
     public enum NomAlgorithme
     {
         GLOUTONCROISSANT,
-        GLOUTONDECROISSANT
+        GLOUTONDECROISSANT,
+        ALGORTHIMETEST,
+        ALGORTIHMETESTNSWAP,
+        ALGORTIHMENSWAP
     }
+
 
 
     public static class NomAlgorithmeExt
@@ -30,6 +34,8 @@ namespace TeamsMaker_METIER.Algorithmes
             {
                 case NomAlgorithme.GLOUTONCROISSANT: res = "Algorithme glouton croissant"; break;
                 case NomAlgorithme.GLOUTONDECROISSANT: res = "Algorithme glouton decroissant"; break;
+                case NomAlgorithme.ALGORTIHMETESTNSWAP: res = "Algorithme test nswap"; break;
+                case NomAlgorithme.ALGORTIHMENSWAP: res = "Algorithme n-swap"; break;
             }
             return res;
         }

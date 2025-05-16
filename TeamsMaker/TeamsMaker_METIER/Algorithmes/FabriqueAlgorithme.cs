@@ -33,6 +33,9 @@ namespace TeamsMaker_METIER.Algorithmes
             {
                 case NomAlgorithme.GLOUTONCROISSANT: res = new AlgorithmeGloutonCroissant(); break;
                 case NomAlgorithme.GLOUTONDECROISSANT: res = new AlgorithmeGloutonDecroissant(); break;
+                case NomAlgorithme.ALGORTIHMETESTNSWAP: res = new AlgorithmetTestNswap(); break;
+                case NomAlgorithme.ALGORTIHMENSWAP: res = new AlgorithmeNswap(); break;
+
             }
             return res;
         }

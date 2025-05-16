@@ -9,6 +9,7 @@
   <ItemGroup>
     <None Remove="JeuxTest\Fichiers\DixMille.jt" />
     <None Remove="JeuxTest\Fichiers\Test.jt" />
+    <None Remove="JeuxTest\Fichiers\Testsimple.jt" />
     <None Remove="JeuxTest\Fichiers\Vide.jt" />
   </ItemGroup>
 
@@ -20,6 +21,9 @@
 
   <ItemGroup>
     <Content Include="JeuxTest\Fichiers\Test.jt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JeuxTest\Fichiers\Testsimple.jt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="JeuxTest\Fichiers\Vide.jt">
