@@ -13,7 +13,8 @@ namespace TeamsMaker_METIER.Algorithmes
     {
         GLOUTONCROISSANT,
         GLOUTONDECROISSANT,
-        EXTREMEENPREMIER
+        EXTREMEENPREMIER,
+        EQUILIBREPROGRESSIF
     }
 
 
@@ -32,6 +33,7 @@ namespace TeamsMaker_METIER.Algorithmes
                 case NomAlgorithme.GLOUTONCROISSANT: res = "Algorithme glouton croissant"; break;
                 case NomAlgorithme.GLOUTONDECROISSANT: res = "Algorithme glouton decroissant"; break;
                 case NomAlgorithme.EXTREMEENPREMIER: res = "Algorithme extreme en premier"; break;
+                case NomAlgorithme.EQUILIBREPROGRESSIF: res = "Equilibre progressif"; break;
             }
             return res;
         }

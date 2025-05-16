@@ -1,0 +1,95 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TeamsMaker_METIER.Algorithmes.Outils;
+using TeamsMaker_METIER.JeuxTest;
+using TeamsMaker_METIER.Personnages;
+using TeamsMaker_METIER.Problemes;
+
+namespace TeamsMaker_METIER.Algorithmes.Realisations
+{
+    
+    public class Equilibre_progressif : Algorithme
+    {
+            public override Repartition Repartir(JeuTest jeuTest)
+            {
+                Personnage[] personnages = jeuTest.Personnages;
+
+                List<Personnage> personnagesRestants = new List<Personnage>(personnages);
+
+                Repartition repartition = new Repartition(jeuTest);
+
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                for (int i = 0; i < personnages.Length - 4; i += 4)
+                {
+                    Equipe equipe = new Equipe();
+
+                    List<Personnage> membresEquipe = new List<Personnage>();
+
+                    while (membresEquipe.Count < 4)
+                    {
+                        Personnage? meilleurCandidat = null;
+
+                        double meilleureProximite = double.MaxValue;
+
+                        // Parcourir tous les personnages restants pour trouver le meilleur candidat
+                        foreach (Personnage personnage in personnagesRestants)
+                        {
+                            // Calculer la moyenne actuelle des niveaux principaux des membres de l'équipe
+                            double moyenneActuelle = 0;
+                            if (membresEquipe.Count > 0)
+                            {
+                                double sommeNiveaux = 0;
+                                foreach (Personnage membre in membresEquipe)
+                                {
+                                    sommeNiveaux += membre.LvlPrincipal;
+                                }
+                                moyenneActuelle = sommeNiveaux / membresEquipe.Count;
+                            }
+
+                            // Calculer la nouvelle moyenne si le personnage était ajouté
+                            double nouvelleMoyenne = (moyenneActuelle * membresEquipe.Count + personnage.LvlPrincipal) / (membresEquipe.Count + 1);
+
+                            // Calculer la proximité de la nouvelle moyenne par rapport à 50
+                            double proximite = Math.Abs(50 - nouvelleMoyenne);
+
+                            // Vérifier si le personnage est un meilleur candidat
+                            if (proximite < meilleureProximite)
+                            {
+                                meilleureProximite = proximite;
+                                meilleurCandidat = personnage;
+                            }
+                        }
+
+                        // Si un meilleur candidat a été trouvé, l'ajouter à l'équipe
+                        if (meilleurCandidat != null)
+                        {
+                            membresEquipe.Add(meilleurCandidat);
+                            personnagesRestants.Remove(meilleurCandidat);
+                        }
+                    }
+
+                    // Ajouter tous les membres à l'équipe
+                    foreach (Personnage membre in membresEquipe)
+                    {
+                        equipe.AjouterMembre(membre);
+                    }
+                    repartition.AjouterEquipe(equipe);
+                }
+
+                stopwatch.Stop();
+                this.TempsExecution = stopwatch.ElapsedMilliseconds;
+
+                return repartition;
+            }
+        }
+
+
+
+
+    }
