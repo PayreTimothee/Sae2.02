@@ -14,59 +14,6 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
     
     public class Equilibre_progressif : Algorithme
     {
-
-        /*
-        public override Repartition Repartir(JeuTest jeuTest)
-        {
-            Personnage[] personnages = jeuTest.Personnages;
-            Repartition repartition = new Repartition(jeuTest);
-            Stopwatch stopwatch = new Stopwatch();
-            int membre_restant = personnages.Length;
-
-            int personnages_test = 0;
-
-            stopwatch.Start();
-            for (int i = 0; i < personnages.Length - 4; i += 4)
-            {
-                Equipe equipe = new Equipe();
-
-                int nb_membre_equipe = 0;
-
-                List<Personnage> equipe_test = new List<Personnage>();
-
-                equipe_test.Add(personnages[personnages_test]);
-
-                double moyenne = 0;
-
-                moyenne += equipe_test[personnages_test].LvlPrincipal;
-
-                while (nb_membre_equipe < 4)
-                {
-                    while ((moyenne / (equipe_test.Count)) > 50)
-                    {
-                        for (int j = 0; j < equipe_test.Count; j++)
-                        {
-                            moyenne += equipe_test[j].LvlPrincipal;
-                        }
-                        equipe_test.RemoveAt(equipe_test.Count - 1);
-                        personnages_test++;
-                        equipe_test.Add(personnages[personnages_test]);
-                    }
-                    equipe.AjouterMembre(personnages[personnages_test]);
-                    nb_membre_equipe++;
-                }
-
-                repartition.AjouterEquipe(equipe);
-            }
-            this.TempsExecution = stopwatch.ElapsedMilliseconds;
-            stopwatch.Stop();
-
-            return repartition;
-
-        }
-        */
-
-
             public override Repartition Repartir(JeuTest jeuTest)
             {
                 Personnage[] personnages = jeuTest.Personnages;
