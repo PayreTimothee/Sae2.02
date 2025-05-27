@@ -1,0 +1,16 @@
+à défaut de le marquée sur teams j'y mais la ou c'est le plus simplement accessible.
+Mes idées de Jeu de test sont ( la forme de mes idées est "Titre" : "Dévelloppement de l'idée" / "Contenu du JT" : 
+-Ouverture d'un nouveaux donjon de niveau faible: Un grand nombre de joueur avec un niveau supérieur au donjon vont allez le faire pour récup le nouveau loot. / Un JT avec majoritairement des joueurs de haut niveaux pour peux de joueur au niveaux faible
+-Ouverture d'un nouveau serveur de jeu : L'ouverture d'un nouveau serveur va amener une majoritée de nouveau joueur à faire des donjons pour récup de nouveaux loot. / Un Jt avec majoritairement des joueurs de niveaux inférieur au niveaux du donjon. Quelque joueur au niveaux du donjon et au dessus mais très peux.
+-Donjon présent depuis longtemps : Un donjon étant présent depuis le début étant destiner au joueur lambda. / Ici le JT est constituer d'une majoritée de joueur du niveaux de ce dernier, quelque nouveau joueur et joueur de niveaux supérieur mais peux.
+-Raid du goat DarkyMehdi : Après un raid de DarkyMehdi alias la montagne déforestée ramène une énorme quantitée de joueur à rejouez au jeu. / Un JT avec bcp de personnage (10k pars exemple) pour pouvoir faire les tests de complexitée/temps.
+
+Idée heuristique: 
+-Le lucky Guest : Ajoute aléatoirement des joueurs dans des équipes (je le mets pour la vanne j'ai pas d'idée)
+-le glouton au régime : Il prend Chaque extrême sois le plus fort et le plus faible ainsi que un moyen fort et un moyen faible (donc découpe le dico de personnage en 4 parties)
+-Le robin des bois qui tire pas droit : Récupère un premier personnage pars magie (jsp comment pars exemple en rdm) puis cherche un prochain personnage rapprochant le score le plus proche possible de 50. (exemple: le premier personnage à un score de 14, alors le deuxième sera au plus proche de 86, puis le prochain 50 ect.)
+-Les doubles fratelo : Créer des équipes de deux jumeaux qui à eux deux créait une moyenne la plus proche de 50 puis aditionne une autre équipe pour finir avec le score le plus proche de 50.
+-Le wippin : Il fait le score le plus proche de 0 (bon c du troll mais à ce niveau la je mets tout ce qui me passe pars la tête)
+-le rdm améliorer : un lucky Guest (voir ligne 9) qui va vérifier ses scores, si sont score n'est pas assez proche de 50 il recommence.
+-le n-swap philosophe : A la place d'un n -swap basique, faire des n-swaps uniquement sur les équipes les plus éloigner de 50 puis refermer (je saurais pas codée ça) petit à petit le cercle pour créer plein de très bonne équipe
+-le box plot : Découper en  Quartiles les personnages en fonction de leurs niveaux (0-25 ; 25-50 ; 50-75 ; 75-100) et sélectionner un personnage de chaque quartile pour créer des équipes (rapide mais peux précis)
