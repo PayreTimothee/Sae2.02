@@ -24,18 +24,21 @@ namespace TeamsMaker
             Parseur parseur = new Parseur();
             JeuTest nomfichier = new JeuTest();
 
-            //On récupère le fichier ou il y a 10 000 personnages
-            nomfichier = parseur.Parser("DixMille.jt");
+            //On récupère le fichier ou il y a le nombre de personnages
+            nomfichier = parseur.Parser("Cent.jt");
 
             //On choisit d'utilsier l'algorithme glouton
-            AlgorithmeGloutonCroissant glouton = new AlgorithmeGloutonCroissant();
+            //lgorithmeGloutonCroissant glouton = new AlgorithmeGloutonCroissant();
 
-            //On utilise la méthode Repartir de l'algorithme glouton (on lance l'algorithme sur le fichier choisi précédemment)
-            Repartition repartir = glouton.Repartir(nomfichier);
+            //Première heuristique de niveau 2
+            Heuristique1_niveau2 heuristique = new Heuristique1_niveau2();
 
-            //On choisi un probleme' (si on veut en simple, avec ou sans les rôles secondaire) ici on choisi simple
+            //On utilise la méthode Repartir de l'algorithme choisi (on lance l'algorithme sur le fichier choisi précédemment)
+            Repartition repartir = heuristique.Repartir(nomfichier);
+
+            //On choisi un probleme (si on veut en simple, avec ou sans les rôles secondaire)
             Probleme probleme = new Probleme();
-            probleme = Probleme.SIMPLE;
+            probleme = Probleme.ROLEPRINCIPAL;
 
             //On lance l'évaluation de la repartition sur le problème choisi précédemment
             repartir.LancerEvaluation(probleme);

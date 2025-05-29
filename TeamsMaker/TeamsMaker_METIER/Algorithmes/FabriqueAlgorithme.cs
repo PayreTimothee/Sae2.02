@@ -35,6 +35,7 @@ namespace TeamsMaker_METIER.Algorithmes
                 case NomAlgorithme.GLOUTONDECROISSANT: res = new AlgorithmeGloutonDecroissant(); break;
                 case NomAlgorithme.EXTREMEENPREMIER: res = new Extreme_en_premier(); break;
                 case NomAlgorithme.EQUILIBREPROGRESSIF: res = new Equilibre_progressif(); break;
+                case NomAlgorithme.ALGOAVECROLENUMUN: res = new Heuristique1_niveau2(); break;
             }
             return res;
         }

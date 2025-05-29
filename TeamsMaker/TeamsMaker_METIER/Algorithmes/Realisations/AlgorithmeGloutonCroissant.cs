@@ -19,6 +19,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             Repartition repartition = new Repartition(jeuTest);
             Stopwatch stopwatch = new Stopwatch();
 
+
             stopwatch.Start();
             for (int i = 0; i < personnages.Length-4; i+=4)
             {
