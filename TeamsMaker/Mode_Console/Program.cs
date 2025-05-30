@@ -31,14 +31,17 @@ namespace TeamsMaker
             //lgorithmeGloutonCroissant glouton = new AlgorithmeGloutonCroissant();
 
             //Première heuristique de niveau 2
-            Heuristique1_niveau2 heuristique = new Heuristique1_niveau2();
+            //Heuristique1_niveau2 heuristique = new Heuristique1_niveau2();
+
+            //N-Swap
+            N_Swap nswap = new N_Swap();
 
             //On utilise la méthode Repartir de l'algorithme choisi (on lance l'algorithme sur le fichier choisi précédemment)
-            Repartition repartir = heuristique.Repartir(nomfichier);
+            Repartition repartir = nswap.Repartir(nomfichier);
 
             //On choisi un probleme (si on veut en simple, avec ou sans les rôles secondaire)
             Probleme probleme = new Probleme();
-            probleme = Probleme.ROLEPRINCIPAL;
+            probleme = Probleme.SIMPLE;
 
             //On lance l'évaluation de la repartition sur le problème choisi précédemment
             repartir.LancerEvaluation(probleme);
