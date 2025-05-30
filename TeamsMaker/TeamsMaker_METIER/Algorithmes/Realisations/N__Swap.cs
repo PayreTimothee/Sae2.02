@@ -92,6 +92,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 }
             }
             stopwatch.Stop();
+            this.TempsExecution = stopwatch.ElapsedMilliseconds;
             return repFinale;
         }
     }
