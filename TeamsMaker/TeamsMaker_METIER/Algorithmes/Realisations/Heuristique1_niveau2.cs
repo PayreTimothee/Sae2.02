@@ -23,6 +23,8 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             //Initialisation de la liste des personnages disponibles, de la répartition et du chronomètre
             List<Personnage> disponibles = jeuTest.Personnages.ToList();
             Repartition repartition = new Repartition(jeuTest);
+
+            // Création du chronomètre pour mesurer le temps d'exécution
             Stopwatch stopwatch = new Stopwatch();
 
             //Début du chronomètre
@@ -30,7 +32,10 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 
             while (disponibles.Count >= 4)
             {
+                //Création d'une nouvelle équipe
                 Equipe equipe = new Equipe();
+
+                //Initalisation des variables pour vérifier les rôles
                 bool tank = false;
                 bool support = false;
                 int dps = 0;

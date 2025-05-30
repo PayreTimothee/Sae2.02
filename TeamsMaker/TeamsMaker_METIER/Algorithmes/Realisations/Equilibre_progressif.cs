@@ -11,9 +11,13 @@ using TeamsMaker_METIER.Problemes;
 
 namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
-    
     public class Equilibre_progressif : Algorithme
     {
+        /// <summary>
+        /// Algorithme Equilibre progressif, c'est-à-dire qu'il crée des équipes de 4 personnages en essayant de garder un équilibre des niveaux avec une moyenne de 50. 
+        /// </summary>
+        /// <param name="jeuTest"> jeu de test utilisé </param>
+        /// <returns> Toutes les équipes de 4 personnes </returns>
         public override Repartition Repartir(JeuTest jeuTest)
         {
             //Initialisation de la liste des personnages
