@@ -12,7 +12,7 @@ using TeamsMaker_METIER.Personnages;
 namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
     /// <summary>
-    /// Algorithme de répartition semi-progressif.
+    /// Algorithme de répartition semi-progressif, c'est-à-dire qu'il commence par les personnages les plus faibles et les plus forts, puis ajoute des personnages intermédiaires pour équilibrer les équipes.
     /// </summary>
     public class EquilibreSemiProgressif : Algorithme
     {

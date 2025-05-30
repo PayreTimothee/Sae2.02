@@ -10,16 +10,26 @@ using TeamsMaker_METIER.Personnages;
 
 namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
+    /// <summary>
+    /// Algorithme glouton qui répartit les personnages en équipes de 4 en ordre croissant.
+    /// </summary>
     public class AlgorithmeGloutonCroissant : Algorithme
     {
         public override Repartition Repartir(JeuTest jeuTest)
         {
+            //Initialisation d'un tableau contenant les personnages
             Personnage[] personnages = jeuTest.Personnages;
+
+            // Tri des personnages par niveau principal en ordre croissant
             Array.Sort(personnages, new ComparateurPersonnageParNiveauPrincipal());
+
+            // Initialisation de la répartition
             Repartition repartition = new Repartition(jeuTest);
+
+            // Création du chronomètre pour mesurer le temps d'exécution
             Stopwatch stopwatch = new Stopwatch();
 
-
+            //Start du chronomètre
             stopwatch.Start();
             for (int i = 0; i < personnages.Length-4; i+=4)
             {
@@ -32,6 +42,8 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 }
                 repartition.AjouterEquipe(equipe);
             }
+
+            //Stop du chronomètre
             this.TempsExecution = stopwatch.ElapsedMilliseconds;
             stopwatch.Stop();
             
