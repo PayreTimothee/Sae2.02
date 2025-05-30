@@ -7,12 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="JeuxTest\Fichiers\20.jt" />
+    <None Remove="JeuxTest\Fichiers\Cent.jt" />
     <None Remove="JeuxTest\Fichiers\DixMille.jt" />
     <None Remove="JeuxTest\Fichiers\Test.jt" />
     <None Remove="JeuxTest\Fichiers\Vide.jt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="JeuxTest\Fichiers\20.jt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JeuxTest\Fichiers\Cent.jt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="JeuxTest\Fichiers\DixMille.jt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -25,6 +33,10 @@
     <Content Include="JeuxTest\Fichiers\Vide.jt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.7.25104.5739" />
   </ItemGroup>
 
 </Project>

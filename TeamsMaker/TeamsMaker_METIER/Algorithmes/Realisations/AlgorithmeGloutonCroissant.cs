@@ -20,7 +20,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             Stopwatch stopwatch = new Stopwatch();
 
             stopwatch.Start();
-            for (int i = 0; i < personnages.Length-4; i+=4)
+            for (int i = 0; i <= personnages.Length-4; i+=4)
             {
                 
                 Equipe equipe  = new Equipe();

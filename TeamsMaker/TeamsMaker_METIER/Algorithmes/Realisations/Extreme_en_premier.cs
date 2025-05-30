@@ -22,7 +22,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             stopwatch.Start();
             int plus_fort = personnages.Length;
             int moins_fort = 0;
-            for (int i = 0; i < personnages.Length - 4; i+=4)
+            for (int i = 0; i <= personnages.Length - 4; i+=4)
             {
 
                 Equipe equipe = new Equipe();
