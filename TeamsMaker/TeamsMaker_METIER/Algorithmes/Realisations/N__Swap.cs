@@ -16,6 +16,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
     {
         public override Repartition Repartir(JeuTest jeuTest)
         {
+            Stopwatch stopwatch = new Stopwatch();
             Extreme_en_premier algoStart = new Extreme_en_premier();
             Repartition repInitial = algoStart.Repartir(jeuTest);
             Repartition repSwap = repInitial;
@@ -90,6 +91,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                     repFinale.AjouterEquipe(equipe);
                 }
             }
+            stopwatch.Stop();
             return repFinale;
         }
     }
