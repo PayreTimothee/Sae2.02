@@ -32,7 +32,7 @@ namespace TeamsMaker_METIER.Personnages.Classes
                 case Classe.BARBARE:
                 case Classe.PALADIN:
                 case Classe.GUERRIER:
-                    role = Role.TANK; 
+                    role = Role.TANK;
                     break;
                 case Classe.ARCHER:
                 case Classe.VOLEUR:

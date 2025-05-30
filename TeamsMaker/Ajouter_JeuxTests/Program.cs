@@ -12,14 +12,14 @@ namespace TeamsMaker
         static void Main(string[] args)
         {
             //J'ai regardé sur le site officiel de Microsoft afin d'écrire sur un fichier / nouveau fichier
-            string[] ficher = new string[10000];
+            string[] ficher = new string[100];
             try
             {
                 //On choisi le chemin de ou va aller le nouveau fichier, ici je l'appelle 'DixMille.jt'
-                StreamWriter sw = new StreamWriter("C:\\Users\\hugol\\Desktop\\Cours_iut\\Semestre2\\S2_02 - Exploration algorithmique d'un problème\\TP\\TeamsMaker\\TeamsMaker_METIER\\JeuxTest\\Fichiers\\DixMille.jt");
+                StreamWriter sw = new StreamWriter("C:\\Users\\hugol\\Desktop\\Cours_iut\\Semestre2\\S2_02 - Exploration algorithmique d'un problème\\Code\\Sae2.02\\TeamsMaker\\TeamsMaker_METIER\\JeuxTest\\Fichiers\\Cent.jt");
                 
-                //On choisi de faire 10 000 personnages
-                for (int i = 1; i < 10000; i++)
+                //On choisi de faire 100 personnages
+                for (int i = 1; i < 100; i++)
                 {
                     //récupère toutes les valeurs de l'enum Classe et les stocke dans un tableau
                     Array values = Enum.GetValues(typeof(Classe));

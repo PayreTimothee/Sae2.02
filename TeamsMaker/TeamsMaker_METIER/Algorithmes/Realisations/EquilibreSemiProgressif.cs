@@ -4,20 +4,25 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using TeamsMaker_METIER.Algorithmes.Outils;
 using TeamsMaker_METIER.JeuxTest;
 using TeamsMaker_METIER.Personnages;
-using TeamsMaker_METIER.Problemes;
 
 namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
-    
-    public class Equilibre_progressif : Algorithme
+    /// <summary>
+    /// Algorithme de répartition semi-progressif.
+    /// </summary>
+    public class EquilibreSemiProgressif : Algorithme
     {
         public override Repartition Repartir(JeuTest jeuTest)
         {
             //Initialisation de la liste des personnages
             Personnage[] personnages = jeuTest.Personnages;
+
+            // Tri des personnages par niveau principal croissant
+            Array.Sort(personnages, new ComparateurPersonnageParNiveauPrincipal());
 
             //Initialisation de la liste des personnages restants et de la répartition
             List<Personnage> personnagesRestants = new List<Personnage>(personnages);
@@ -28,7 +33,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             // Démarrage du chronomètre
             stopwatch.Start();
 
-                
+
             for (int i = 0; i < personnages.Length - 4; i += 4)
             {
                 // Créer une nouvelle équipe
@@ -36,6 +41,18 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 
                 // Initialiser une liste pour stocker les membres de l'équipe
                 List<Personnage> membresEquipe = new List<Personnage>();
+
+                // Ajouter le premier personnage à l'équipe
+                membresEquipe.Add(personnagesRestants[0]);
+
+                // Supprimer le premier personnage de la liste des personnages restants
+                membresEquipe.RemoveAt(0);
+
+                // Ajouter le dernier personnage à l'équipe
+                membresEquipe.Add(personnagesRestants[personnagesRestants.Count -1]);
+
+                // Supprimer le dernier personnage de la liste des personnages restants
+                personnagesRestants.RemoveAt(personnagesRestants.Count - 1);
 
                 while (membresEquipe.Count < 4)
                 {
@@ -95,10 +112,9 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             this.TempsExecution = stopwatch.ElapsedMilliseconds;
 
             return repartition;
-            }
         }
 
 
-
-
     }
+}
+
