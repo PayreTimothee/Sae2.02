@@ -40,6 +40,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 bool support = false;
                 int dps = 0;
 
+                //Parcours de la liste des personnages disponibles à partir du premier personnage
                 for (int j = 0; j < disponibles.Count; j++)
                 {
                     //Initialisation d'un personnage au j-ème index de la liste
@@ -69,7 +70,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                         disponibles.RemoveAt(j);
                     }
                 }
-
+                
                 //Si il y a au moins un TANK, un SUPPORT et deux DPS, on ajoute l'équipe à la répartition
                 if (equipe.Membres.Length == 4)
                 {
