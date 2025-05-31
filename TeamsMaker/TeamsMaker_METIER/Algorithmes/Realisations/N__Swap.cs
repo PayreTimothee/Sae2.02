@@ -34,7 +34,6 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                         {
                             foreach (Personnage personnageB in repEquipeB.Membres)//parcours les membres de la deuxième équipe
                             {
-                                bool res = true;
                                 //swap des membres entre les deux équipes
                                 Equipe equipe1 = new Equipe();
                                 Equipe equipe2 = new Equipe();
@@ -54,9 +53,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                                         equipe2.AjouterMembre(membreB);
                                     }
                                 }
-                                res = res && equipe1.EstValide(Probleme.SIMPLE);//vérifie si les équipe sont valide
-                                res = res && equipe2.EstValide(Probleme.SIMPLE);
-                                if (res)//calcule le score des nouvelles équipes
+                                if (equipe1.EstValide(Probleme.SIMPLE) && equipe2.EstValide(Probleme.SIMPLE))//calcule le score des nouvelles équipes
                                 {
                                     double scoreNouvellesEquipes = 0;
                                     scoreNouvellesEquipes += equipe1.Score(Probleme.SIMPLE);
