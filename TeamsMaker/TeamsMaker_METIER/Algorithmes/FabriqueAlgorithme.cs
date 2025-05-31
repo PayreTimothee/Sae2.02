@@ -34,7 +34,7 @@ namespace TeamsMaker_METIER.Algorithmes
                 case NomAlgorithme.GLOUTONCROISSANT: res = new AlgorithmeGloutonCroissant(); break;
                 case NomAlgorithme.GLOUTONDECROISSANT: res = new AlgorithmeGloutonDecroissant(); break;
                 case NomAlgorithme.EXTREMEENPREMIER: res = new Extreme_en_premier(); break;
-                case NomAlgorithme.NOPERATION: res = new AlgorithmeNoperation(4,100); break;
+                case NomAlgorithme.NOPERATION: res = new AlgorithmeNoperation(3,100); break;
             }
             return res;
         }

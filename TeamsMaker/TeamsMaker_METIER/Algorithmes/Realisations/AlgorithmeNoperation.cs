@@ -42,7 +42,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 {
                     repartition = déterminerRepartion(repartition, jeuTest);
                     repartition.LancerEvaluation(new Probleme());
-                    if (MeilleurScore > repartition.Score) //Si la nouvelle répartition est meilleure que la précédente
+                    if (MeilleurScore > repartition.Score && repartition.Score!= -1) //Si la nouvelle répartition est meilleure que la précédente et que le score n'est pas -1 (ce que la répartion est invalide)
                     {
                         MeilleurScore = repartition.Score; //On met à jour le meilleur score
                         //Console.WriteLine("Nouveau meilleur score : " + MeilleurScore);
@@ -63,7 +63,8 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
         private Repartition déterminerRepartion(Repartition inital,JeuTest jeuTest)
         {
             //timer
-            
+            n = this.n;
+            //Console.WriteLine("test--------------------------------------------------------------------------------------------------------" + n);
             //initalisation de la repartion
             Repartition repartition = inital; // On initialise la répartition avec la répartition initiale
             repartition.LancerEvaluation(new Probleme());
@@ -106,7 +107,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 
             }
             while (estValide == false); // On boucle jusqu'à ce que l'on trouve une équipe valide
-
+            
             List<Equipe> equipesChoisies = new List<Equipe>();
             List<Equipe> equipesNonChoisies = new List<Equipe>(); //sera utilisée pour les équipes non choisies et pour créer la repartition finale
             List<Personnage> personnagesSansEquipe = new List<Personnage>(repartition.PersonnagesSansEquipe); // Liste des personnages qui ne sont pas dans une équipe
@@ -116,6 +117,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 if (equipes.Contains(i))
                 {
                     equipesChoisies.Add(repartionEquipe[i]);
+                    //Console.WriteLine($"Equipe {i} non choisie : {repartionEquipe[i].ToString()}");
                 }
                 else
                 {
@@ -134,7 +136,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 }
             }
 
-            /*Console.WriteLine("équipes choisises non modiées : ");
+            Console.WriteLine("équipes choisises non modiées : ");
             foreach (Equipe equipe in equipesChoisies)
             {
                 double moyenneNiveau = 0;
@@ -144,7 +146,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                     Console.WriteLine($"Personnage choisi :- Niveau : {personnage.LvlPrincipal} - Rôle : {personnage.RolePrincipal}");
                 }
                 Console.WriteLine($"Moyenne de l'équipe : {moyenneNiveau / equipe.Membres.Count()}");
-            }*/
+            }
             equipesChoisies.Clear(); // On vide la liste des équipes choisies pour la remplir avec les nouvelles équipes créées
 
             for (int i = 1; i < n + 1; i++)
@@ -154,10 +156,10 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 // On va choisir les personnages de l'équipe en en calulant la moyenne des niveaux
                 //on initalise la moyenne des niveaux à 0
                 double moyenneNiveau = 0;
-                while (nouvelleEquipe.Membres.Count() <= n)
+                while (nouvelleEquipe.Membres.Count() <= 3)
                 {
                     //on va parcourire les personnages choisis pour calculer la moyenne des niveaux
-                    Personnage personnageChoisi = personnagesChoisis[0]; //on supose que le premier personnage est le meilleur
+                    Personnage personnageChoisi = personnagesChoisis.First(); //on supose que le premier personnage est le meilleur
                     double ecratNiveau = 100; // on initialise à un écart impossible
                     foreach (Personnage personnage in personnagesChoisis)
                     {
@@ -191,7 +193,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 }
                 Console.WriteLine($"Moyenne de l'équipe : {moyenneNiveau / equipe.Membres.Count()}");
             }*/
-
+            
             // On va créer la nouvelle répartition avec les équipes choisies et les équipes choisies
 
             Repartition nouvelleRepartition = new Repartition(jeuTest);
