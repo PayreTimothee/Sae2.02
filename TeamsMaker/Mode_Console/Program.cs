@@ -25,12 +25,13 @@ namespace TeamsMaker
             JeuTest nomfichier = new JeuTest();
 
             //On récupère le fichier ou il y a 10 000 personnages
-            nomfichier = parseur.Parser("cent.jt");
+            nomfichier = parseur.Parser("Cent.jt");
+            //nomfichier = parseur.Parser("Cent.jt");
 
             //On choisit d'utilsier l'algorithme glouton
             //AlgorithmeGloutonCroissant glouton = new AlgorithmeGloutonCroissant();
             //Extreme_en_premier glouton = new Extreme_en_premier();
-            AlgorithmeNoperation glouton = new AlgorithmeNoperation(3,2);
+            AlgorithmeNoperation glouton = new AlgorithmeNoperation(3,100);
 
             //On utilise la méthode Repartir de l'algorithme glouton (on lance l'algorithme sur le fichier choisi précédemment)
             Repartition repartir = glouton.Repartir(nomfichier);
