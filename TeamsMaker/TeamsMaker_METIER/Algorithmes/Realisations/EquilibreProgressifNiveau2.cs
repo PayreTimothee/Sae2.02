@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using TeamsMaker_METIER.Algorithmes.Outils;
 using TeamsMaker_METIER.JeuxTest;
 using TeamsMaker_METIER.Personnages;
+using TeamsMaker_METIER.Personnages.Classes;
 using TeamsMaker_METIER.Problemes;
 
 namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
-    public class Equilibre_progressif : Algorithme
+    internal class EquilibreProgressifNiveau2 : Algorithme
     {
         /// <summary>
-        /// Algorithme Equilibre progressif, c'est-à-dire qu'il crée des équipes de 4 personnages en essayant de garder un équilibre des niveaux avec une moyenne de 50. 
+        /// Algorithme Equilibre progressif adapté avec les rôles (niveau2)
         /// </summary>
         /// <param name="jeuTest"> jeu de test utilisé </param>
         /// <returns> Toutes les équipes de 4 personnages </returns>
+
+        
         public override Repartition Repartir(JeuTest jeuTest)
         {
             //Initialisation de la liste des personnages
@@ -32,7 +30,34 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             // Démarrage du chronomètre
             stopwatch.Start();
 
-                
+            // Initialisation des listes pour les rôles
+            List<Personnage> listTank = new List<Personnage>();
+            List<Personnage> listDps = new List<Personnage>();
+            List<Personnage> listSupport = new List<Personnage>();
+
+            //Ajout dans les différentes listes les personnages en fonction de leur rôle
+            foreach (Personnage personnage in personnagesRestants)
+            {
+                if (personnage.RolePrincipal == Role.TANK)
+                {
+                    listTank.Add(personnage);
+                }
+                else if (personnage.RolePrincipal == Role.DPS)
+                {
+                    listDps.Add(personnage);
+                }
+                else if (personnage.RolePrincipal == Role.SUPPORT)
+                {
+                    listSupport.Add(personnage);
+                }
+            }
+
+            // Tri des listes par niveau principal
+            Array.Sort(listTank.ToArray(), new ComparateurPersonnageParNiveauPrincipal());
+            Array.Sort(listDps.ToArray(), new ComparateurPersonnageParNiveauPrincipal());
+            Array.Sort(listSupport.ToArray(), new ComparateurPersonnageParNiveauPrincipal());
+
+
             for (int i = 0; i < personnages.Length - 4; i += 4)
             {
                 // Créer une nouvelle équipe
@@ -40,6 +65,20 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 
                 // Initialiser une liste pour stocker les membres de l'équipe
                 List<Personnage> membresEquipe = new List<Personnage>();
+
+                //Ajout du tank le plus faible puis suppression de la liste pour éviter les doublons
+                if (listTank.Count > 0)
+                {
+                    membresEquipe.Add(listTank[0]);
+                    listTank.RemoveAt(0);
+                }
+
+                //Ajout du support le plus fort puis suppression de la liste pour éviter les doublons
+                if (listSupport.Count > 0)
+                {
+                    membresEquipe.Add(listSupport[listSupport.Count - 1]);
+                    listSupport.RemoveAt(listSupport.Count - 1);
+                }
 
                 while (membresEquipe.Count < 4)
                 {
@@ -49,10 +88,10 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                     // Initialiser la proximité minimale à une valeur très élevée
                     double meilleureProximite = double.MaxValue;
 
-                    // Parcourir tous les personnages restants pour trouver le meilleur candidat
-                    foreach (Personnage personnage in personnagesRestants)
+                    // Parcourir tous les personnages DPS restants pour trouver le meilleur candidat
+                    foreach (Personnage personnage in listDps)
                     {
-                        // Calculer la moyenne actuelle des niveaux des membres de l'équipe
+                        // Calculer la moyenne actuelle des niveaux principaux des membres de l'équipe
                         double moyenneActuelle = 0;
                         if (membresEquipe.Count > 0)
                         {
@@ -82,7 +121,12 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                     if (meilleurCandidat != null)
                     {
                         membresEquipe.Add(meilleurCandidat);
-                        personnagesRestants.Remove(meilleurCandidat);
+                        listDps.Remove(meilleurCandidat);
+                    }
+                    // Sinon, on sort de la boucle pour éviter les boucles infinies
+                    else
+                    {
+                        break;
                     }
                 }
 
@@ -91,7 +135,12 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 {
                     equipe.AjouterMembre(membre);
                 }
-                repartition.AjouterEquipe(equipe);
+
+                // Vérifier si il y a 4 personnages dans l'équipe et si elle est valide pour le problème ROLEPRINCIPAL
+                if (equipe.Membres.Length == 4 && equipe.EstValide(Probleme.ROLEPRINCIPAL))
+                {
+                    repartition.AjouterEquipe(equipe);
+                }
             }
 
             //Fin du chronomètre
@@ -99,10 +148,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             this.TempsExecution = stopwatch.ElapsedMilliseconds;
 
             return repartition;
-            }
         }
-
-
-
-
     }
+}
+
