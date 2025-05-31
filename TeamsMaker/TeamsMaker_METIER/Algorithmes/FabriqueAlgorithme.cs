@@ -39,7 +39,8 @@ namespace TeamsMaker_METIER.Algorithmes
                 case NomAlgorithme.NSWAPAMELIORER: res = new NSwapAmeliore(); break;
                 case NomAlgorithme.EQUILIBRESEMIPROGRESSIF: res = new EquilibreSemiProgressif(); break;
                 case NomAlgorithme.ROLEPRINCIPALHEURISTIQUE1: res = new Heuristique1_niveau2(); break;
-                   case NomAlgorithme.BOXPLOT: res = new Box_Plot(); break;
+                case NomAlgorithme.BOXPLOT: res = new Box_Plot(); break;
+                case NomAlgorithme.EQUILIBREPROGRESSIFNIVEAU2: res = new EquilibreProgressifNiveau2(); break;
             }
             return res;
         }
