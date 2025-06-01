@@ -1,17 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using TeamsMaker_METIER.JeuxTest;
 using TeamsMaker_METIER.Personnages;
+using TeamsMaker_METIER.Personnages.Classes;
 using TeamsMaker_METIER.Problemes;
 
 namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
-    internal class N_SwapNiveau2 : Algorithme
+    public class N_SwapNiveau2 : Algorithme
     {
+        /// <summary>
+        /// Algorithme de répartition de type N-Swap niveau 2.
+        /// </summary>
+        /// <param name="jeuTest"></param>
+        /// <returns></returns>
         public override Repartition Repartir(JeuTest jeuTest)
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -40,53 +41,85 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                                 //On vérifie si le score de l'équipe 1 est inférieur à 50 et celui de l'équipe 2 est supérieur à 50 pour le problème ROLEPRINCIPAL
                                 if (equipe1.Score(Probleme.ROLEPRINCIPAL) < 50 && equipe2.Score(Probleme.ROLEPRINCIPAL) > 50)
                                 {
-                                    //Initalisation des personnages les plus forts et les plus faibles de chaque équipe
-                                    Personnage? lePlusFortEquipeA = null;
-                                    Personnage? lePlusNulEquipeA = null;
+                                    //Initalisation des niveau des différents rôles de deux équipes
+                                    Personnage? tank1 = null;
+                                    Personnage? tank2 = null;
 
-                                    Personnage? lePlusFortEquipeB = null;
-                                    Personnage? lePlusNulEquipeB = null;
+                                    Personnage? support1 = null;
+                                    Personnage? support2 = null;
+
+                                    Personnage? dps1equipe1 = null;
+                                    Personnage? dps2equipe1 = null;
+
+                                    Personnage? dps1equipe2 = null;
+                                    Personnage? dps2equipe2 = null;
 
                                     //On parcourt les membres des équipes pour trouver les personnages les plus forts et les plus faibles
                                     foreach (Personnage perso in repEquipeA.Membres)
                                     {
-                                        if (perso.LvlPrincipal > lePlusFortEquipeA.LvlPrincipal)
+                                        if (perso.RolePrincipal == Role.TANK && tank1 == null)
                                         {
-                                            lePlusFortEquipeA = perso;
+                                            tank1 = perso;
                                         }
-
-                                        if (perso.LvlPrincipal < lePlusNulEquipeA.LvlPrincipal)
+                                        else if (perso.RolePrincipal == Role.SUPPORT && support1 == null)
                                         {
-                                            lePlusNulEquipeA = perso;
+                                            support1 = perso;
+                                        }
+                                        else if (perso.RolePrincipal == Role.DPS)
+                                        {
+                                            if (dps1equipe1 == null)
+                                            {
+                                                dps1equipe1 = perso;
+                                            }
+                                            else if (dps2equipe1 == null)
+                                            {
+                                                dps2equipe1 = perso;
+                                            }
                                         }
                                     }
 
                                     foreach (Personnage perso in repEquipeB.Membres)
                                     {
-                                        if (perso.LvlPrincipal > lePlusFortEquipeB.LvlPrincipal)
+                                        if (perso.RolePrincipal == Role.TANK && tank2 == null)
                                         {
-                                            lePlusFortEquipeB = perso;
+                                            tank2 = perso;
                                         }
-
-                                        if (perso.LvlPrincipal < lePlusNulEquipeB.LvlPrincipal)
+                                        else if (perso.RolePrincipal == Role.SUPPORT && support2 == null)
                                         {
-                                            lePlusNulEquipeB = perso;
+                                            support2 = perso;
+                                        }
+                                        else if (perso.RolePrincipal == Role.DPS)
+                                        {
+                                            if (dps1equipe2 == null)
+                                            {
+                                                dps1equipe2 = perso;
+                                            }
+                                            else if (dps2equipe2 == null)
+                                            {
+                                                dps2equipe2 = perso;
+                                            }
                                         }
                                     }
 
 
-                                    //On vérifie que les personnages les plus forts et les plus faibles existent pour éviter les NullReferenceException
-                                    if (lePlusFortEquipeA != null && lePlusNulEquipeA != null && lePlusFortEquipeB != null && lePlusNulEquipeB != null)
+                                    //Vérifie que tous les rôles sont bien assignés avant de continuer
+                                    if (tank1 != null && tank2 != null && support1 != null && support2 != null && dps1equipe1 != null && dps2equipe1 != null && dps1equipe2 != null && dps2equipe2 != null)
                                     {
-                                        equipe1.AjouterMembre(lePlusFortEquipeA);
-                                        equipe2.AjouterMembre(lePlusNulEquipeB);
-                                        equipe1.AjouterMembre(lePlusNulEquipeA);
-                                        equipe2.AjouterMembre(lePlusFortEquipeB);
+                                        //On ajoute les personnages dans les différentes équipes
+                                        equipe1.AjouterMembre(tank1);
+                                        equipe1.AjouterMembre(support1);
+                                        equipe1.AjouterMembre(dps1equipe1);
+                                        equipe1.AjouterMembre(dps2equipe1);
+
+                                        equipe2.AjouterMembre(tank2);
+                                        equipe2.AjouterMembre(support2);
+                                        equipe2.AjouterMembre(dps1equipe2);
+                                        equipe2.AjouterMembre(dps2equipe2);
 
                                         //Ajouter le personnages si ce n'est pas le personnageA ou le personnageB ou les personnages les plus forts et les plus faibles de chaque équipe
                                         foreach (Personnage membreA in repEquipeA.Membres)
                                         {
-                                            if (membreA != personnageA && membreA != lePlusFortEquipeA && membreA != lePlusNulEquipeA)
+                                            if (membreA != personnageA && membreA != tank1 && membreA != support1 && membreA != dps1equipe1 && membreA != dps2equipe1)
                                             {
                                                 equipe1.AjouterMembre(membreA);
                                             }
@@ -95,19 +128,19 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                                         //Ajouter le personnages si ce n'est pas le personnageA ou le personnageB ou les personnages les plus forts et les plus faibles de chaque équipe
                                         foreach (Personnage membreB in repEquipeB.Membres)
                                         {
-                                            if (membreB != personnageB && membreB != lePlusFortEquipeB && membreB != lePlusNulEquipeB)
+                                            if (membreB != personnageB && membreB != tank2 && membreB != support2 && membreB != dps1equipe2 && membreB != dps2equipe2)
                                             {
                                                 equipe2.AjouterMembre(membreB);
                                             }
                                         }
 
-                                        //On vérifie que les deux équipes sont valides pour le problème SIMPLE avant de calculer le score
-                                        if (equipe1.EstValide(Probleme.SIMPLE) && equipe2.EstValide(Probleme.SIMPLE))
+                                        //On vérifie que les deux équipes sont valides pour le problème ROLEPRINCIPAL avant de calculer le score
+                                        if (equipe1.EstValide(Probleme.ROLEPRINCIPAL) && equipe2.EstValide(Probleme.ROLEPRINCIPAL))
                                         {
                                             double scoreNouvellesEquipes = 0;
-                                            scoreNouvellesEquipes += equipe1.Score(Probleme.SIMPLE);
-                                            scoreNouvellesEquipes += equipe2.Score(Probleme.SIMPLE);
-                                            double scoreAvant = repEquipeA.Score(Probleme.SIMPLE) + repEquipeB.Score(Probleme.SIMPLE);
+                                            scoreNouvellesEquipes += equipe1.Score(Probleme.ROLEPRINCIPAL);
+                                            scoreNouvellesEquipes += equipe2.Score(Probleme.ROLEPRINCIPAL);
+                                            double scoreAvant = repEquipeA.Score(Probleme.ROLEPRINCIPAL) + repEquipeB.Score(Probleme.ROLEPRINCIPAL);
                                             double differenceScore = scoreNouvellesEquipes - scoreAvant;
 
                                             //On vérifie si la différence de score est négative pour savoir si le nouveau score est inferieur à celui de base
@@ -149,7 +182,8 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             }
             stopwatch.Stop();
             return repFinale;
-        }
 
+
+        }
     }
 }
