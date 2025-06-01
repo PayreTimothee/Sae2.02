@@ -10,12 +10,12 @@ using TeamsMaker_METIER.Problemes;
 
 namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
-    public class NSwapAmeliore : Algorithme
+    internal class N_SwapNiveau2 : Algorithme
     {
         public override Repartition Repartir(JeuTest jeuTest)
         {
             Stopwatch stopwatch = new Stopwatch();
-            Extreme_en_premier algoStart = new Extreme_en_premier();
+            Heuristique1_niveau2 algoStart = new Heuristique1_niveau2();
             Repartition repInitial = algoStart.Repartir(jeuTest);
             Repartition repSwap = repInitial;
             bool meilleur = true;
@@ -36,8 +36,9 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                                 Equipe equipe2 = new Equipe();
                                 equipe1.AjouterMembre(personnageB);
                                 equipe2.AjouterMembre(personnageA);
-                                
-                                if (equipe1.Score(Probleme.SIMPLE) < 50 && equipe2.Score(Probleme.SIMPLE) > 50 )
+
+                                //On vérifie si le score de l'équipe 1 est inférieur à 50 et celui de l'équipe 2 est supérieur à 50 pour le problème ROLEPRINCIPAL
+                                if (equipe1.Score(Probleme.ROLEPRINCIPAL) < 50 && equipe2.Score(Probleme.ROLEPRINCIPAL) > 50)
                                 {
                                     //Initalisation des personnages les plus forts et les plus faibles de chaque équipe
                                     Personnage? lePlusFortEquipeA = null;
@@ -149,6 +150,6 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             stopwatch.Stop();
             return repFinale;
         }
-    
+
     }
 }
