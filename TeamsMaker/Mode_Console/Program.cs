@@ -36,6 +36,9 @@ namespace TeamsMaker
             //N-Swap
             N_Swap nswap = new N_Swap();
 
+            //N-Swap améliroer
+            //NSwapAmeliore nswameliorer = new NSwapAmeliore();
+
             //On utilise la méthode Repartir de l'algorithme choisi (on lance l'algorithme sur le fichier choisi précédemment)
             Repartition repartir = nswap.Repartir(nomfichier);
 

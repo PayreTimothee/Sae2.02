@@ -12,7 +12,6 @@ namespace TeamsMaker_METIER.Algorithmes
     public enum NomAlgorithme
     {
         GLOUTONCROISSANT,
-        GLOUTONDECROISSANT,
         EXTREMEENPREMIER,
         EQUILIBREPROGRESSIF,
         NSWAP,
@@ -38,7 +37,6 @@ namespace TeamsMaker_METIER.Algorithmes
             switch(algo)
             {
                 case NomAlgorithme.GLOUTONCROISSANT: res = "Algorithme glouton croissant"; break;
-                case NomAlgorithme.GLOUTONDECROISSANT: res = "Algorithme glouton decroissant"; break;
                 case NomAlgorithme.EXTREMEENPREMIER: res = "Algorithme extreme en premier"; break;
                 case NomAlgorithme.EQUILIBREPROGRESSIF: res = "Equilibre progressif"; break;
                 case NomAlgorithme.NSWAP: res = "N-Swap"; break;
