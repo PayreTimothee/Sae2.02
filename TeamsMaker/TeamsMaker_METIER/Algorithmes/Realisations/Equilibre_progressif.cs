@@ -13,6 +13,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
     public class Equilibre_progressif : Algorithme
     {
+        ///<author> LAMBERT Hugo </author>
         /// <summary>
         /// Algorithme Equilibre progressif, c'est-à-dire qu'il crée des équipes de 4 personnages en essayant de garder un équilibre des niveaux avec une moyenne de 50. 
         /// </summary>

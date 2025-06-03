@@ -9,13 +9,12 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
     internal class EquilibreProgressifNiveau2 : Algorithme
     {
+        ///<author> LAMBERT Hugo </author>
         /// <summary>
         /// Algorithme Equilibre progressif adapté avec les rôles (niveau2)
         /// </summary>
         /// <param name="jeuTest"> jeu de test utilisé </param>
         /// <returns> Toutes les équipes de 4 personnages </returns>
-
-        
         public override Repartition Repartir(JeuTest jeuTest)
         {
             //Initialisation de la liste des personnages

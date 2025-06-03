@@ -3,17 +3,38 @@ using TeamsMaker_METIER.JeuxTest;
 using TeamsMaker_METIER.Personnages;
 using TeamsMaker_METIER.Personnages.Classes;
 using TeamsMaker_METIER.Problemes;
+using TeamsMaker_METIER.Algorithmes.Outils;
 
 namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
     public class NSwapAmeliore : Algorithme
     {
+        ///<author> LAMBERT Hugo</author>
+        /// <summary>
+        /// Algorithme N-Swap Amélioré
+        /// </summary>
+        /// <param name="jeuTest"> Jeu de test utilisé </param>
+        /// <returns> Repartition contenant les équipes de 4 personnages modifié </returns>
         public override Repartition Repartir(JeuTest jeuTest)
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             Extreme_en_premier algoStart = new Extreme_en_premier();
             Repartition repInitial = algoStart.Repartir(jeuTest);
+
+            List<Double> ScoreEquipeTrie = new List<Double>();
+
+            //On trie les équipes par leur score
+            foreach (Equipe equipe in repInitial.Equipes)
+            {
+                if (equipe.Membres.Length == 4)
+                {
+                    ScoreEquipeTrie.Add(equipe.Score(Probleme.SIMPLE));
+                }
+            }
+
+            Array.Sort(ScoreEquipeTrie.ToArray());
+
             Repartition repSwap = repInitial;
             bool meilleur = true;
 
@@ -21,12 +42,15 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             {
                 meilleur = false;
                 bool ameliorationTrouvee = false;
-                for (int i = 0; i < repSwap.Equipes.Length; i++)
+
+                //On parcoure les équipes qui ont les moyennes les plus basses
+                for (int i = 0; i < repInitial.Equipes.Length; i++)
                 {
-                    for (int j = i + 1; j < repSwap.Equipes.Length && ameliorationTrouvee != true; j++)
+                    //On parcoure les équipes qui ont les moyennes les plus haute
+                    for (int j = repInitial.Equipes.Length -1; j > 0 && ameliorationTrouvee != true; j--)
                     {
-                        Equipe repEquipeA = repSwap.Equipes[i];
-                        Equipe repEquipeB = repSwap.Equipes[j];
+                        Equipe repEquipeA = repInitial.Equipes[i];
+                        Equipe repEquipeB = repInitial.Equipes[j];
                         int a = 0;
                         while (a < repEquipeA.Membres.Length && ameliorationTrouvee != true )
                         {
@@ -40,52 +64,19 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                                 equipe1.AjouterMembre(personnageB);
                                 equipe2.AjouterMembre(personnageA);
 
-                                //Initalisation des personnages les plus forts et les plus faibles de chaque équipe.
-                                Personnage? lePlusFortEquipeA = new Personnage(Classe.WARLOCK, 0, 0);
-                                Personnage? lePlusNulEquipeA = new Personnage(Classe.WARLOCK, 100, 0);
-
-                                Personnage? lePlusFortEquipeB = new Personnage(Classe.WARLOCK, 0, 0);
-                                Personnage? lePlusNulEquipeB = new Personnage(Classe.WARLOCK, 100, 0);
-
-                                //On parcourt les membres des équipes pour trouver les personnages les plus forts et les plus faibles
-                                foreach (Personnage perso in repEquipeA.Membres)
-                                {
-                                    if (perso.LvlPrincipal >= lePlusFortEquipeA?.LvlPrincipal)
-                                    {
-                                        lePlusFortEquipeA = perso;
-                                    }
-
-                                    if (perso.LvlPrincipal <= lePlusNulEquipeA?.LvlPrincipal)
-                                    {
-                                        lePlusNulEquipeA = perso;
-                                    }
-                                }
-
-                                foreach (Personnage perso in repEquipeB.Membres)
-                                {
-                                    if (perso.LvlPrincipal >= lePlusFortEquipeB?.LvlPrincipal)
-                                    {
-                                        lePlusFortEquipeB = perso;
-                                    }
-
-                                    if (perso.LvlPrincipal <= lePlusNulEquipeB?.LvlPrincipal)
-                                    {
-                                        lePlusNulEquipeB = perso;
-                                    }
-                                }
+                                Personnage Personnage1 = null;
+                                Personnage Personnage2 = null;
 
                                 //On vérifie que les personnages les plus forts et les plus faibles existent pour éviter les NullReferenceException
-                                if (lePlusFortEquipeA != null && lePlusNulEquipeA != null && lePlusFortEquipeB != null && lePlusNulEquipeB != null)
+                                if (Personnage1 != null && Personnage2 != null)
                                 {
-                                    equipe1.AjouterMembre(lePlusFortEquipeA);
-                                    equipe2.AjouterMembre(lePlusNulEquipeB);
-                                    equipe1.AjouterMembre(lePlusNulEquipeA);
-                                    equipe2.AjouterMembre(lePlusFortEquipeB);
+                                    equipe1.AjouterMembre(Personnage1);
+                                    equipe2.AjouterMembre(Personnage2);
 
                                     //Ajouter le personnages si ce n'est pas le personnageA ou le personnageB ou les personnages les plus forts et les plus faibles de chaque équipe
                                     foreach (Personnage membreA in repEquipeA.Membres)
                                     {
-                                        if (membreA != personnageA && membreA != lePlusFortEquipeA && membreA != lePlusNulEquipeA)
+                                        if (membreA != personnageA && membreA != Personnage1 && membreA != Personnage2)
                                         {
                                             equipe1.AjouterMembre(membreA);
                                         }
@@ -94,7 +85,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                                     //Ajouter le personnages si ce n'est pas le personnageA ou le personnageB ou les personnages les plus forts et les plus faibles de chaque équipe
                                     foreach (Personnage membreB in repEquipeB.Membres)
                                     {
-                                        if (membreB != personnageB && membreB != lePlusFortEquipeB && membreB != lePlusNulEquipeB)
+                                        if (membreB != personnageB && membreB != Personnage1 && membreB != Personnage2)
                                         {
                                             equipe2.AjouterMembre(membreB);
                                         }

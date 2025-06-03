@@ -11,13 +11,21 @@ using TeamsMaker_METIER.Personnages;
 
 namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
-    /// <summary>
-    /// Algorithme de répartition semi-progressif, c'est-à-dire qu'il commence par les personnages les plus faibles et les plus forts, puis ajoute des personnages intermédiaires pour équilibrer les équipes.
-    /// </summary>
     public class EquilibreSemiProgressif : Algorithme
     {
+        /// <summary>
+        /// Algorithme de répartition semi-progressif qui répartit les personnages en équipes équilibrées
+        /// </summary>
+        /// <param name="jeuTest"> Jeu de test utilisé </param>
+        /// <return> Répartition contenant les équipe de 4 personnages</returns>
         public override Repartition Repartir(JeuTest jeuTest)
         {
+            //Création du chronomètre pour mesurer le temps d'exécution
+            Stopwatch stopwatch = new Stopwatch();
+
+            // Démarrage du chronomètre
+            stopwatch.Start();
+
             //Initialisation de la liste des personnages
             Personnage[] personnages = jeuTest.Personnages;
 
@@ -28,10 +36,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             List<Personnage> personnagesRestants = new List<Personnage>(personnages);
             Repartition repartition = new Repartition(jeuTest);
 
-            //Création du chronomètre pour mesurer le temps d'exécution
-            Stopwatch stopwatch = new Stopwatch();
-            // Démarrage du chronomètre
-            stopwatch.Start();
+            
 
 
             for (int i = 0; i < personnages.Length - 4; i += 4)

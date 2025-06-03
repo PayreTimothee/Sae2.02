@@ -10,11 +10,13 @@ using TeamsMaker_METIER.Personnages;
 
 namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
-    /// <summary>
-    /// Algorithme glouton qui répartit les personnages en équipes de 4 en ordre croissant.
-    /// </summary>
     public class AlgorithmeGloutonCroissant : Algorithme
     {
+        /// <summary>
+        /// Algorithme glouton croissant pour répartir les personnages d'un jeu de test en équipes de 4 membres.
+        /// </summary>
+        /// <param name="jeuTest"> Jeu de test utilisé </param>
+        /// <returns> Répartition contenant les équipes de 4 personnages </returns>
         public override Repartition Repartir(JeuTest jeuTest)
         {
             //Initialisation d'un tableau contenant les personnages

@@ -13,6 +13,11 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
     /// </summary>
     public class AlgorithmeTest : Algorithme
     {
+        /// <summary>
+        /// Algorithme de test pour répartir les personnages d'un jeu de test en équipes de 4 membres.
+        /// </summary>
+        /// <param name="jeuTest"> Jeu de test utilisé </param>
+        /// <returns> Répartition contenant les équipes de 4 personnages </returns>
         public override Repartition Repartir(JeuTest jeuTest)
         {
             Repartition repartition = new Repartition(jeuTest);

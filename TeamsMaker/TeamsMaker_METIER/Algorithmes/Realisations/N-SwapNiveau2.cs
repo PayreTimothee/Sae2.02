@@ -8,14 +8,17 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
     public class N_SwapNiveau2 : Algorithme
     {
+        ///<author> LAMBERT Hugo</author>
         /// <summary>
         /// Algorithme de répartition de type N-Swap niveau 2.
         /// </summary>
-        /// <param name="jeuTest"></param>
-        /// <returns></returns>
+        /// <param name="jeuTest"> Jeu de test utilisé </param>
+        /// <returns> Repartition contenant les équipes de 4 personnages modifié </returns>
         public override Repartition Repartir(JeuTest jeuTest)
         {
             Stopwatch stopwatch = new Stopwatch();
+
+
             Heuristique1_niveau2 algoStart = new Heuristique1_niveau2();
             Repartition repInitial = algoStart.Repartir(jeuTest);
             Repartition repSwap = repInitial;
