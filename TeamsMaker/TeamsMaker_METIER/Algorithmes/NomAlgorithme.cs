@@ -16,6 +16,7 @@ namespace TeamsMaker_METIER.Algorithmes
         EQUILIBREPROGRESSIF,
         NSWAP,
         NOPT,
+        NOPT2,
         EQUILIBRESEMIPROGRESSIF,
         ROLEPRINCIPALHEURISTIQUE1,
         NSWAPAMELIORER,
@@ -42,6 +43,7 @@ namespace TeamsMaker_METIER.Algorithmes
                 case NomAlgorithme.EQUILIBREPROGRESSIF: res = "Equilibre progressif"; break;
                 case NomAlgorithme.NSWAP: res = "N-Swap"; break;
                 case NomAlgorithme.NOPT: res = "N-Opt"; break;
+                case NomAlgorithme.NOPT2: res = "N-Opt 2"; break;
                 case NomAlgorithme.NSWAPAMELIORER: res = "N-Swap améliorer"; break;
                 case NomAlgorithme.EQUILIBRESEMIPROGRESSIF: res = "Equilibre semi-progressif"; break;
                 case NomAlgorithme.ROLEPRINCIPALHEURISTIQUE1: res = "Heuristique simple avec rôle principal"; break;
