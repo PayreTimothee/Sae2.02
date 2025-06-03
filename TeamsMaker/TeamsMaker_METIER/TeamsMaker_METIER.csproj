@@ -17,9 +17,6 @@
     <Content Include="JeuxTest\Fichiers\Cent.jt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="JeuxTest\Fichiers\Cent_DonjonExisteDepuisLongtemps.jt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="JeuxTest\Fichiers\DixMille.jt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -29,6 +26,10 @@
     <Content Include="JeuxTest\Fichiers\Test.jt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.7.25104.5739" />
   </ItemGroup>
 
 </Project>

@@ -15,6 +15,7 @@ namespace TeamsMaker_METIER.Algorithmes
         EXTREMEENPREMIER,
         EQUILIBREPROGRESSIF,
         NSWAP,
+        NOPT,
         EQUILIBRESEMIPROGRESSIF,
         ROLEPRINCIPALHEURISTIQUE1,
         NSWAPAMELIORER,
@@ -40,6 +41,7 @@ namespace TeamsMaker_METIER.Algorithmes
                 case NomAlgorithme.EXTREMEENPREMIER: res = "Algorithme extreme en premier"; break;
                 case NomAlgorithme.EQUILIBREPROGRESSIF: res = "Equilibre progressif"; break;
                 case NomAlgorithme.NSWAP: res = "N-Swap"; break;
+                case NomAlgorithme.NOPT: res = "N-Opt"; break;
                 case NomAlgorithme.NSWAPAMELIORER: res = "N-Swap améliorer"; break;
                 case NomAlgorithme.EQUILIBRESEMIPROGRESSIF: res = "Equilibre semi-progressif"; break;
                 case NomAlgorithme.ROLEPRINCIPALHEURISTIQUE1: res = "Heuristique simple avec rôle principal"; break;
