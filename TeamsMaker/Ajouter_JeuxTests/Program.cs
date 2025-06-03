@@ -16,7 +16,7 @@ namespace TeamsMaker
             try
             {
                 //On choisi le chemin de ou va aller le nouveau fichier, ici je l'appelle 'DixMille.jt'
-                StreamWriter sw = new StreamWriter("C:\\Users\\hugol\\Desktop\\Cours_iut\\Semestre2\\S2_02 - Exploration algorithmique d'un problème\\Code\\Sae2.02\\TeamsMaker\\TeamsMaker_METIER\\JeuxTest\\Fichiers\\Cent_DonjonExisteDepuisLongtemps.jt");
+                StreamWriter sw = new StreamWriter("C:\\Users\\payre\\Documents\\GitHub\\Sae2.02\\TeamsMaker\\TeamsMaker_METIER\\JeuxTest\\Fichier\\Test2.jt");
 
                 //On initialise un compteur à 0, il n'est pas utilisé dans ce code mais peut être utile pour d'autres modifications
                 int compteur = 0;

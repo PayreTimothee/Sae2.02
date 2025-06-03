@@ -7,29 +7,49 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="JeuxTest\Fichiers\Cent.jt" />
+    <None Remove="JeuxTest\Fichiers\Afflux_de_joueur_10000.jt" />
     <None Remove="JeuxTest\Fichiers\Cent_DonjonExisteDepuisLongtemps.jt" />
-    <None Remove="JeuxTest\Fichiers\DixMille.jt" />
-    <None Remove="JeuxTest\Fichiers\Test.jt" />
+    <None Remove="JeuxTest\Fichiers\DonjonClassique_100.jt" />
+    <None Remove="JeuxTest\Fichiers\DonjonClassique_1000.jt" />
+    <None Remove="JeuxTest\Fichiers\DonjonClassique_10000.jt" />
+    <None Remove="JeuxTest\Fichiers\DonjonClassique_500.jt" />
+    <None Remove="JeuxTest\Fichiers\DonjonClassique_5000.jt" />
+    <None Remove="JeuxTest\Fichiers\Nouveau_Donjon_400.jt" />
+    <None Remove="JeuxTest\Fichiers\Ouverture_Serveur_400.jt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="JeuxTest\Fichiers\Cent.jt">
+    <Content Include="JeuxTest\Fichiers\Afflux_de_joueur_10000.jt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="JeuxTest\Fichiers\DixMille.jt">
+    <Content Include="JeuxTest\Fichiers\DonjonClassique_100.jt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="JeuxTest\Fichiers\Test.jt">
+    <Content Include="JeuxTest\Fichiers\DonjonClassique_10000.jt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JeuxTest\Fichiers\DonjonClassique_500.jt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JeuxTest\Fichiers\DonjonClassique_5000.jt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JeuxTest\Fichiers\Nouveau_Donjon_400.jt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JeuxTest\Fichiers\Ouverture_Serveur_400.jt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.7.25104.5739" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="JeuxTest\Fichiers\DonjonClassique_1000.jt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
