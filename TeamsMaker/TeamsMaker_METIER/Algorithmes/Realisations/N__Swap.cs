@@ -7,11 +7,12 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
     public class N_Swap : Algorithme
     {
+        ///<author> PAYRE Timothée </author>
         /// <summary>
         /// Algorithme n-swap qui swap les personnages 
         /// </summary>
         /// <param name="jeuTest"> Jeu de test </param>
-        /// <returns> Equipe de 4 personnages </returns>
+        /// <returns> Répartition contenant les équipes de 4 personnages </returns>
         public override Repartition Repartir(JeuTest jeuTest)
         {
             Stopwatch stopwatch = new Stopwatch();

@@ -12,6 +12,12 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
     public class Box_Plot : Algorithme
     {
+        ///<author> PAYRE Timothée </author>
+        /// <summary>
+        /// Algorithme de répartition des personnages en séparant les personnages en quartiles selon leur niveau principal, puis en formant des équipes équilibrées à partir de ces quartiles.
+        /// </summary>
+        /// <param name="jeuTest"> Jeu de test utilisé </param>
+        /// <returns> Répartition contenant les équipes de 4 personnages </returns>
         public override Repartition Repartir(JeuTest jeuTest)
         {
 

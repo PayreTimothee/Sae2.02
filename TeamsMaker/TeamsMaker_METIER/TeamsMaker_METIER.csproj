@@ -8,12 +8,16 @@
 
   <ItemGroup>
     <None Remove="JeuxTest\Fichiers\Cent.jt" />
+    <None Remove="JeuxTest\Fichiers\Cent_DonjonExisteDepuisLongtemps.jt" />
     <None Remove="JeuxTest\Fichiers\DixMille.jt" />
     <None Remove="JeuxTest\Fichiers\Test.jt" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="JeuxTest\Fichiers\Cent.jt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="JeuxTest\Fichiers\Cent_DonjonExisteDepuisLongtemps.jt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="JeuxTest\Fichiers\DixMille.jt">

@@ -13,6 +13,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
     public class Heuristique1_niveau2 : Algorithme
     {
+        ///<author> LAMBERT Hugo </author>
         /// <summary>
         /// Créer des équipes de 4 personnages avec un SUPPORT, un TANK et deux DPS
         /// </summary>

@@ -15,6 +15,12 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
     /// </summary>
     public class Extreme_en_premier : Algorithme
     {
+        ///<author> LAMBERT Hugo </author>
+        /// <summary>
+        /// Répartit les personnages d'un jeu de test en équipes de 4 en prenant les 2 plus faibles et les 2 plus forts à chaque itération.
+        /// </summary>
+        /// <param name="jeuTest"> Jeu de test utilisé </param>
+        /// <returns> Repartition contenant les équipes de 4 personnages </returns>
         public override Repartition Repartir(JeuTest jeuTest)
         {
             //Initialisation d'un tableau contenant les personnages
