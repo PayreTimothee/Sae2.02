@@ -16,12 +16,14 @@ namespace TeamsMaker_METIER.Algorithmes
         EQUILIBREPROGRESSIF,
         NSWAP,
         NOPT,
+        NOPT2,
         EQUILIBRESEMIPROGRESSIF,
         ROLEPRINCIPALHEURISTIQUE1,
         NSWAPAMELIORER,
         BOXPLOT,
         EQUILIBREPROGRESSIFNIVEAU2,
-        NSWAPNIVEAU2
+        NSWAPNIVEAU2,
+        MOYENNE3
     }
 
 
@@ -42,12 +44,14 @@ namespace TeamsMaker_METIER.Algorithmes
                 case NomAlgorithme.EQUILIBREPROGRESSIF: res = "Equilibre progressif"; break;
                 case NomAlgorithme.NSWAP: res = "N-Swap"; break;
                 case NomAlgorithme.NOPT: res = "N-Opt"; break;
+                case NomAlgorithme.NOPT2: res = "N-Opt niveau 2"; break;
                 case NomAlgorithme.NSWAPAMELIORER: res = "N-Swap améliorer"; break;
                 case NomAlgorithme.EQUILIBRESEMIPROGRESSIF: res = "Equilibre semi-progressif"; break;
                 case NomAlgorithme.ROLEPRINCIPALHEURISTIQUE1: res = "Heuristique simple avec rôle principal"; break;
                 case NomAlgorithme.BOXPLOT: res = "Algorithme Boxplot"; break;
                 case NomAlgorithme.EQUILIBREPROGRESSIFNIVEAU2: res = "Equilibre progressif niveau 2"; break;
                 case NomAlgorithme.NSWAPNIVEAU2: res = "N-Swap niveau 2"; break;
+                case NomAlgorithme.MOYENNE3: res = "Moyenne niveau 3"; break;
             }
             return res;
         }
