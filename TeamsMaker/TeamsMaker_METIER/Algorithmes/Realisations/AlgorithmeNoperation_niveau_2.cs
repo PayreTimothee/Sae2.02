@@ -9,7 +9,6 @@ using TeamsMaker_METIER.JeuxTest;
 using TeamsMaker_METIER.Personnages;
 using TeamsMaker_METIER.Personnages.Classes;
 using TeamsMaker_METIER.Problemes;
-using Xceed.Wpf.Toolkit;
 
 namespace TeamsMaker_METIER.Algorithmes.Realisations
 {
@@ -36,16 +35,13 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             sw.Start();//On démarre le stopwatch
             Repartition repartition = new Heuristique1_niveau2().Repartir(jeuTest);//On utilise l'algorithme glouton pour créer une répartition initiale
             repartition.LancerEvaluation(new Probleme());
-            Console.WriteLine("Score initial : " + repartition.Score); //On affiche le score de la répartition initiale
-
+            
             for (int i = 0; i < max; i++) //On va faire n itérations pour trouver la meilleure répartition  
             {
-                //Console.WriteLine("Itération n°" + (i + 1) + " sur " + max);
-
+                
                 double MeilleurScore = repartition.Score; //On suppose que le meilleur score est le score de la répartition initiale
                 Boolean estMeilleur = true; //On suppose que la répartition initiale est la meilleure répartition
-                //Console.WriteLine("Score Début : " + repartition.Score);
-                while (estMeilleur) //On boucle tant que la répartition est meilleure que la précédente
+               while (estMeilleur) //On boucle tant que la répartition est meilleure que la précédente
                 {
                     repartition = déterminerRepartion(repartition, jeuTest);
                    Probleme probleme = new Probleme(); //On crée un nouveau problème pour évaluer la répartition
@@ -54,13 +50,11 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                     if (MeilleurScore > repartition.Score && repartition.Score!= -1) //Si la nouvelle répartition est meilleure que la précédente et que le score n'est pas -1 (ce que la répartion est invalide)
                     {
                         MeilleurScore = repartition.Score; //On met à jour le meilleur score
-                        //Console.WriteLine("Nouveau meilleur score : " + MeilleurScore);
                         estMeilleur = true; //On continue à chercher une meilleure répartition
                     }
                     else
                     {
-                        //Console.WriteLine("Pas de nouveau meilleur score : " + repartition.Score);
-                        estMeilleur = false; //On arrête de chercher une meilleure répartition
+                       estMeilleur = false; //On arrête de chercher une meilleure répartition
                     }
                 }
             }
@@ -76,8 +70,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             //initalisation de la repartion
             Repartition repartition = inital; // On initialise la répartition avec la répartition initiale
             repartition.LancerEvaluation(new Probleme());
-            //Console.WriteLine("score initial : " + repartition.Score);
-
+            
             List<Equipe> repartionEquipe = new List<Equipe>();
             int nombreEquipe = 0;
             foreach (Equipe equipe in repartition.Equipes)
@@ -125,7 +118,6 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 if (equipes.Contains(i))
                 {
                     equipesChoisies.Add(repartionEquipe[i]);
-                    //Console.WriteLine($"Equipe {i} non choisie : {repartionEquipe[i].ToString()}");
                 }
                 else
                 {
@@ -157,21 +149,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 
             equipesChoisies.Clear(); // On vide la liste des équipes choisies pour la suite de l'algorithme
 
-            //Console.WriteLine("\téquipes choisises non modiées : ");
-            Double test = 0;
-            foreach (Equipe equipe in equipesChoisies)
-            {
-                double moyenneNiveau = 0;
-                foreach (Personnage personnage in equipe.Membres)
-                {
-                    moyenneNiveau += personnage.LvlPrincipal;
-                    //Console.WriteLine($"\t\tPersonnage choisi :- Niveau : {personnage.LvlPrincipal} - Rôle : {personnage.RolePrincipal}");
-                }
-                test += moyenneNiveau;
-                //Console.WriteLine($"\tMoyenne de l'équipe : {moyenneNiveau / equipe.Membres.Count()}");
-            }
-            //Console.WriteLine($"Moyenne des équipes choisies : {test}"); // On affiche la moyenne des niveaux des équipes choisies
-
+           
             for (int i = 1; i < n + 1; i++)
             {
                 // On va créer une nouvelle équipe avec les personnages choisis
@@ -235,21 +213,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 equipesChoisies.Add(nouvelleEquipe);
             }
             
-            test = 0; // On réinitialise la moyenne des niveaux
-            //Console.WriteLine("\téquipes choisises modiées : ");
-            foreach (Equipe equipe in equipesChoisies)
-            {
-                double moyenneNiveau = 0;
-                foreach (Personnage personnage in equipe.Membres)
-                {
-                    moyenneNiveau += personnage.LvlPrincipal;
-                    //Console.WriteLine($"\t\tPersonnage choisi :- Niveau : {personnage.LvlPrincipal} - Rôle : {personnage.RolePrincipal}");
-                }
-                test += moyenneNiveau; // On ajoute la moyenne des niveaux de l'équipe à la moyenne des niveaux
-                //Console.WriteLine($"\tMoyenne de l'équipe : {moyenneNiveau / equipe.Membres.Count()}");
-            }
-            //Console.WriteLine($"Moyenne des équipes choisies : {test}"); // On affiche la moyenne des niveaux des équipes choisies
-
+            
             //On va créer la nouvelle répartition avec les équipes choisies et les équipes choisies
 
             Repartition nouvelleRepartition = new Repartition(jeuTest);
@@ -265,15 +229,11 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             probleme = Probleme.ROLEPRINCIPAL; // On choisit le problème à évaluer
             nouvelleRepartition.LancerEvaluation(probleme);
             repartition.LancerEvaluation(probleme); // On évalue la répartition initiale
-            //Console.WriteLine($"comparaison des scores : {nouvelleRepartition.Score} < {repartition.Score}");
             if (nouvelleRepartition.Score < repartition.Score)
             {
                 repartition = nouvelleRepartition; // On remplace la répartition initiale par la nouvelle répartition si elle est meilleure
             }
-            else
-            {
-                //Console.WriteLine("La nouvelle répartition n'est pas meilleure que l'ancienne répartition");
-            }
+            
             
             return repartition;
         }
