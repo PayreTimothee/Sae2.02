@@ -34,13 +34,16 @@ namespace TeamsMaker
             //Heuristique1_niveau2 heuristique = new Heuristique1_niveau2();
 
             //N-Swap
-            N_Swap nswap = new N_Swap();
+            //N_Swap nswap = new N_Swap();
+
+            //moyenne niveau 3
+            AlgorithmeMoyenneNiveau3_role_simple moyenneNiveau3 = new AlgorithmeMoyenneNiveau3_role_simple();
 
             //N-Swap améliroer
             //NSwapAmeliore nswameliorer = new NSwapAmeliore();
 
             //On utilise la méthode Repartir de l'algorithme choisi (on lance l'algorithme sur le fichier choisi précédemment)
-            Repartition repartir = nswap.Repartir(nomfichier);
+            Repartition repartir = moyenneNiveau3.Repartir(nomfichier);
 
             //On choisi un probleme (si on veut en simple, avec ou sans les rôles secondaire)
             Probleme probleme = new Probleme();
@@ -51,11 +54,11 @@ namespace TeamsMaker
 
             //On arrête le calcul de temps
             stopwatch.Stop();
-            
+
             //Afichage du temps, on saute une ligne et on affiche le score de la répartition
-            Console.WriteLine(stopwatch);
-            Console.WriteLine("\n");
-            Console.WriteLine(repartir.Score);
+            Console.WriteLine($"Le temps est de : {moyenneNiveau3.TempsExecution} ms");
+            Console.WriteLine();
+            Console.WriteLine($"Le score est de : {repartir.Score}");
 
 
         }
