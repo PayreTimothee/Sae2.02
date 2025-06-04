@@ -389,11 +389,8 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 // on vérifie si l'équipe est valide
                 if (equipe.EstValide(probleme))
                 {
-                    if(equipe.Score(probleme)<400)
-                    {
-                        repartition.AjouterEquipe(equipe); //On ajoute l'équipe à la répartition
-                    }
-                    
+                    repartition.AjouterEquipe(equipe); //On ajoute l'équipe à la répartition
+
 
 
                 }

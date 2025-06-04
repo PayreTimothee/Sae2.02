@@ -25,7 +25,7 @@ namespace TeamsMaker
             JeuTest nomfichier = new JeuTest();
 
             //On récupère le fichier ou il y a le nombre de personnages
-            nomfichier = parseur.Parser("Cent.jt");
+            nomfichier = parseur.Parser("Dixmille.jt");
 
             //On choisit d'utilsier l'algorithme glouton
             //lgorithmeGloutonCroissant glouton = new AlgorithmeGloutonCroissant();
@@ -37,8 +37,8 @@ namespace TeamsMaker
             //N_Swap nswap = new N_Swap();
 
             //moyenne niveau 3
-            AlgorithmeMoyenneNiveau3_role_simple moyenneNiveau3 = new AlgorithmeMoyenneNiveau3_role_simple();
-
+            //AlgorithmeMoyenneNiveau3_role_simple moyenneNiveau3 = new AlgorithmeMoyenneNiveau3_role_simple();
+            AlgorithmeMyenne3_role_et_sousrole moyenneNiveau3 = new AlgorithmeMyenne3_role_et_sousrole();
             //N-Swap améliroer
             //NSwapAmeliore nswameliorer = new NSwapAmeliore();
 
@@ -47,7 +47,7 @@ namespace TeamsMaker
 
             //On choisi un probleme (si on veut en simple, avec ou sans les rôles secondaire)
             Probleme probleme = new Probleme();
-            probleme = Probleme.SIMPLE;
+            probleme = Probleme.ROLESECONDAIRE; // Problème avec rôle secondaire
 
             //On lance l'évaluation de la repartition sur le problème choisi précédemment
             repartir.LancerEvaluation(probleme);
@@ -59,7 +59,7 @@ namespace TeamsMaker
             Console.WriteLine($"Le temps est de : {moyenneNiveau3.TempsExecution} ms");
             Console.WriteLine();
             Console.WriteLine($"Le score est de : {repartir.Score}");
-
+            Console.WriteLine($"Il reste {repartir.PersonnagesSansEquipe.Count()} personnages sans équipe"); // On affiche le nombre de personnages sans équipe utile pour le problème de niveau 3
 
         }
     }
