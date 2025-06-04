@@ -44,7 +44,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             // Index des personnages les moins forts
             int moins_fort = 0;
 
-            for (int i = 0; i < personnages.Length - 4; i+=4)
+            for (int i = 0; i <= personnages.Length - 4; i+=4)
             {
 
                 Equipe equipe = new Equipe();
