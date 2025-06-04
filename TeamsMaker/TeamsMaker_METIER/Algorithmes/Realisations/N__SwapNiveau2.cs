@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using TeamsMaker_METIER.JeuxTest;
 using TeamsMaker_METIER.Personnages;
+using TeamsMaker_METIER.Personnages.Classes;
 using TeamsMaker_METIER.Problemes;
 
 namespace TeamsMaker_METIER.Algorithmes.Realisations
@@ -17,7 +18,8 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
         {
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            Extreme_en_premier algoStart = new Extreme_en_premier();//initialiser l'algorithme de départ
+            Heuristique1_niveau2 algoStart = new Heuristique1_niveau2();//initialiser l'algorithme de départ
+
             Repartition repInitial = algoStart.Repartir(jeuTest);//initialise la repartition de départ
             Repartition repSwap = repInitial;//mettre la repartition de départ dans la variable de swap
             bool meilleur = true;//variable pour savoir si on a trouvé une meilleure repartition
@@ -25,26 +27,44 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             while (meilleur)//continue tant qu'il n'y a pas d'amélioration trouvée
             {
                 meilleur = false;
-                bool ameliorementTrouvee = false;
-                for (int i = 0; i < repSwap.Equipes.Length && !ameliorementTrouvee; i++)//parcour les différentes paires
+                bool ameliorationTrouvee = false;
+                for (int i = 0; i < repSwap.Equipes.Length && !ameliorationTrouvee; i++)//parcour les différentes paires
                 {
-                    for (int j = i + 1; j < repSwap.Equipes.Length && !ameliorementTrouvee; j++)
+                    for (int j = i + 1; j < repSwap.Equipes.Length && !ameliorationTrouvee; j++)
                     {
                         Equipe repEquipeA = repSwap.Equipes[i];
                         Equipe repEquipeB = repSwap.Equipes[j];
+
+
                         int a = 0;
-                        while (a < repEquipeA.Membres.Length && !ameliorementTrouvee)
+                        while (a < repEquipeA.Membres.Length && !ameliorationTrouvee)
                         {
+                            //On récupère le personnage A
                             Personnage personnageA = repEquipeA.Membres[a];
+
+                            //On récupère le rôle du personnage A
+                            Role rolePerso1 = repEquipeA.Membres[a].RolePrincipal;
                             int b = 0;
-                            while (b < repEquipeB.Membres.Length && !ameliorementTrouvee)
+                            while (b < repEquipeB.Membres.Length && !ameliorationTrouvee)
                             {
+                                //On récupère le personnage B
                                 Personnage personnageB = repEquipeB.Membres[b];
-                                //swap des membres entre les deux équipes
+
+                                //On recupère le rôle du personnage B
+                                Role rolePerso2 = repEquipeB.Membres[b].RolePrincipal;
+
+                                //Création des équipes après le swap
                                 Equipe equipe1 = new Equipe();
                                 Equipe equipe2 = new Equipe();
-                                equipe1.AjouterMembre(personnageB);
-                                equipe2.AjouterMembre(personnageA);
+
+                                //On Swap uniquement si les perosnnages ont le même rôle principal
+                                if (rolePerso1 == rolePerso2)
+                                {
+                                    equipe1.AjouterMembre(personnageB);
+                                    equipe2.AjouterMembre(personnageA);
+                                }
+                                
+
                                 foreach (Personnage membreA in repEquipeA.Membres)
                                 {
                                     if (membreA != personnageA)
@@ -59,7 +79,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                                         equipe2.AjouterMembre(membreB);
                                     }
                                 }
-                                if (equipe1.EstValide(Probleme.SIMPLE) && equipe2.EstValide(Probleme.SIMPLE))
+                                if (equipe1.EstValide(Probleme.ROLEPRINCIPAL) && equipe2.EstValide(Probleme.ROLEPRINCIPAL))
                                 {
                                     double scoreNouvellesEquipes = equipe1.Score(Probleme.SIMPLE) + equipe2.Score(Probleme.SIMPLE);
                                     double scoreAvant = repEquipeA.Score(Probleme.SIMPLE) + repEquipeB.Score(Probleme.SIMPLE);
@@ -78,7 +98,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                                         }
                                         repSwap = nouvelleRep;
                                         meilleur = true;
-                                        ameliorementTrouvee = true;
+                                        ameliorationTrouvee = true;
                                     }
                                 }
                                 b++;// incrémente
