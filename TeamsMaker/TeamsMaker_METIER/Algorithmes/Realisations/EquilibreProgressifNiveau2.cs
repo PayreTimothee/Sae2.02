@@ -57,7 +57,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             Array.Sort(listSupport.ToArray(), new ComparateurPersonnageParNiveauPrincipal());
 
 
-            for (int i = 0; i < personnages.Length - 4; i += 4)
+            for (int i = 0; i < personnages.Length; i += 4)
             {
                 // Créer une nouvelle équipe
                 Equipe equipe = new Equipe();
