@@ -101,5 +101,4 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             return repFinale;
         }
     }
-
 }

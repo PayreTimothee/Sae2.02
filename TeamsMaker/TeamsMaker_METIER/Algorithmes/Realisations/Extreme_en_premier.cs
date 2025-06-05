@@ -64,14 +64,10 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 //Ajout de l'équipe à la répartition
                 repartition.AjouterEquipe(equipe);
             }
-
             // Stop du chronomètre
             this.TempsExecution = stopwatch.ElapsedMilliseconds;
             stopwatch.Stop();
-
             return repartition;
-
         }
-
     }
 }
