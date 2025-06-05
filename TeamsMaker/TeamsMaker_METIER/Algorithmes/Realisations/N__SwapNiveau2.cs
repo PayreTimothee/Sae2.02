@@ -36,7 +36,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                         Equipe repEquipeA = repSwap.Equipes[i];
                         Equipe repEquipeB = repSwap.Equipes[j];
 
-                        
+                        //Initialisation d'un index pour parcourir les membres de l'équipe A
                         int a = 0;
 
                         //On parcourt les membres de l'équipe A et on vérifie q
@@ -47,7 +47,10 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 
                             //On récupère le rôle du personnage A
                             Role rolePerso1 = repEquipeA.Membres[a].RolePrincipal;
+
+                            //Initialisation d'un index pour parcourir les membres de l'équipe B
                             int b = 0;
+
                             while (b < repEquipeB.Membres.Length && ameliorationTrouvee == false)
                             {
                                 //On récupère le personnage B
@@ -82,11 +85,16 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                                         equipe2.AjouterMembre(membreB);
                                     }
                                 }
+
+                                // Vérification de la validité des équipes après le swap
                                 if (equipe1.EstValide(Probleme.ROLEPRINCIPAL) && equipe2.EstValide(Probleme.ROLEPRINCIPAL))
                                 {
+                                    // Calcul du score des nouvelles équipes et de l'ancien score
                                     double scoreNouvellesEquipes = equipe1.Score(Probleme.SIMPLE) + equipe2.Score(Probleme.SIMPLE);
                                     double scoreAvant = repEquipeA.Score(Probleme.SIMPLE) + repEquipeB.Score(Probleme.SIMPLE);
                                     double differenceScore = scoreNouvellesEquipes - scoreAvant;
+
+                                    // Si la différence de score est négative, on effectue le swap
                                     if (differenceScore < 0)
                                     {
                                         Repartition nouvelleRep = new Repartition(jeuTest);
@@ -99,6 +107,8 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                                                 nouvelleRep.AjouterEquipe(repSwap.Equipes[k]);
                                             }
                                         }
+
+                                        // Mise à jour de la répartition de swap avec la nouvelle répartition
                                         repSwap = nouvelleRep;
                                         meilleur = true;
                                         ameliorationTrouvee = true;
@@ -111,6 +121,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                     }
                 }
             }
+
             Repartition repFinale = new Repartition(jeuTest);//ajoute les équipes à la répartition finale
             foreach (Equipe equipe in repSwap.Equipes)
             {
@@ -124,5 +135,4 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             return repFinale;
         }
     }
-
 }

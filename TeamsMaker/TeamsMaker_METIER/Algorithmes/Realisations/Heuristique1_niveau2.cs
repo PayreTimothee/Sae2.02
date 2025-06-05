@@ -76,12 +76,7 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             // Fin du chronomètre
             this.TempsExecution = stopwatch.ElapsedMilliseconds;
             stopwatch.Stop();
-
             return repartition;
         }
-
-        
-
-
     }
 }

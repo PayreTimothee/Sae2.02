@@ -43,7 +43,6 @@ namespace TeamsMaker_METIER.Algorithmes
                 case NomAlgorithme.EQUILIBREPROGRESSIFNIVEAU2: res = new EquilibreProgressifNiveau2(); break;
                 case NomAlgorithme.NSWAPNIVEAU2: res = new N_SwapNiveau2(); break;
                 case NomAlgorithme.MOYENNE3: res = new AlgorithmeMoyenneNiveau3_role_simple(); break;
-                case NomAlgorithme.NSWAPNIVEAU3: res = new N_SwapNiveau3(); break;
             }
             return res;
         }

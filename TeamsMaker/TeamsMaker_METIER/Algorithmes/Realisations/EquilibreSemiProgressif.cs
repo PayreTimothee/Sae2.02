@@ -36,9 +36,6 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
             List<Personnage> personnagesRestants = new List<Personnage>(personnages);
             Repartition repartition = new Repartition(jeuTest);
 
-            
-
-
             for (int i = 0; i <= personnages.Length; i += 4)
             {
                 // Créer une nouvelle équipe
@@ -62,8 +59,6 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 {
                     break;
                 }
-
-
                 
                 if (personnagesRestants.Count > 0)
                 {
@@ -139,8 +134,6 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
 
             return repartition;
         }
-
-
     }
 }
 
