@@ -48,16 +48,37 @@ namespace TeamsMaker_METIER.Algorithmes.Realisations
                 List<Personnage> membresEquipe = new List<Personnage>();
 
                 // Ajouter le premier personnage à l'équipe
-                membresEquipe.Add(personnagesRestants[0]);
+                //membresEquipe.Add(personnagesRestants[0]); ///////////////////
 
-                // Supprimer le premier personnage de la liste des personnages restants
-                membresEquipe.RemoveAt(0);
+                if (personnagesRestants.Count > 0)
+                {
+                    membresEquipe.Add(personnagesRestants[0]);
 
-                // Ajouter le dernier personnage à l'équipe
-                membresEquipe.Add(personnagesRestants[personnagesRestants.Count -1]);
+                    // Supprimer le premier personnage de la liste des personnages restants
+                    personnagesRestants.RemoveAt(0);
+                }
+                //Sinon on sort de la boucle pour éviter les boucles infini
+                else
+                {
+                    break;
+                }
 
-                // Supprimer le dernier personnage de la liste des personnages restants
-                personnagesRestants.RemoveAt(personnagesRestants.Count - 1);
+
+                
+                if (personnagesRestants.Count > 0)
+                {
+                    // Ajouter le dernier personnage à l'équipe
+                    membresEquipe.Add(personnagesRestants[personnagesRestants.Count - 1]);
+
+                    // Supprimer le dernier personnage de la liste des personnages restants
+                    personnagesRestants.RemoveAt(personnagesRestants.Count - 1);
+                }
+                //Sinon on sort de la boucle pour éviter les boucles infini
+                else
+                {
+                    break;
+                }
+
 
                 while (membresEquipe.Count < 4)
                 {
